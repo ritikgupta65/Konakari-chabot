@@ -352,6 +352,10 @@ textarea::placeholder {
     font-size: 0.790rem;
 }
 
+/* .text-center {
+    text-align: center;
+} */
+
 @layer base {
   * {
     @apply border-border;

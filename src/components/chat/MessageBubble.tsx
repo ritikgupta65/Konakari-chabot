@@ -21,6 +21,18 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   useEffect(() => {
     if (isUser) return; // Only animate bot messages
     
+    // Check if this is a product recommendation - if so, skip typing animation
+    const isProductMsg = typeof message.content === 'string' &&
+      /\*\*Product Name\*\*:/.test(message.content) &&
+      /\*\*Image URL\*\*:/.test(message.content);
+    
+    if (isProductMsg) {
+      // Show products immediately without typing animation
+      setDisplayedText(message.content as string);
+      setIsTyping(false);
+      return;
+    }
+    
     let currentText = '';
     let currentIndex = 0;
     const fullText = message.content as string;
@@ -72,15 +84,18 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
       const titleMatch = block.match(/\*\*Product Name\*\*:\s*(.*?)(?:\n|$)/);
       const descriptionMatch = block.match(/\*\*Description\*\*:\s*(.*?)(?:\n|$)/);
       const urlMatch = block.match(/\*\*Product URL\*\*:\s*\[(.*?)\]\((.*?)\)/);
-      const imageMatch = block.match(/\*\*Image URL\*\*:\s*(?:\[(.*?)\]\()?([^)\n]+)(?:\))?/);
+      const markdownImageMatch = block.match(/\*\*Image URL\*\*:\s*!?\[[^\]]*\]\(([^)\n]+)\)/);
+      const directImageMatch = block.match(/\*\*Image URL\*\*:\s*(https?:[^\s]+)/);
+      const rawImageUrl = markdownImageMatch?.[1]?.trim() ?? directImageMatch?.[1]?.trim() ?? '';
+      const imageUrl = rawImageUrl.replace(/\)+$/, '');
 
       // Only add if we have at least title and image
-      if (titleMatch && imageMatch) {
+      if (titleMatch && imageUrl) {
         products.push({
           title: titleMatch[1]?.trim() ?? '',
           description: descriptionMatch?.[1]?.trim() ?? '',
           url: urlMatch?.[2]?.trim() ?? '',
-          image: imageMatch[2]?.trim() ?? '',
+          image: imageUrl,
         });
       }
     }
@@ -139,7 +154,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
                     href={product.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full text-center bg-green-500 hover:bg-green-600 transition text-white rounded-lg py-2.5 text-sm font-semibold"
+                    className="flex w-full items-center justify-center bg-green-500 hover:bg-green-600 transition text-white rounded-lg py-2.5 text-sm font-semibold"
                   >
                     View Product
                   </a>
@@ -203,7 +218,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             : 'bg-gradient-to-r from-white/30 to-gray-100/30 backdrop-blur-md border border-gray-200/30 text-gray-900 shadow-md'} shadow-lg`}
         >
           {isProductRecommendation ? (
-             renderProductCards(displayedText || message.content as string)
+             renderProductCards(message.content as string)
           ) : (
             <div ref={messageRef} className="text-xs leading-relaxed">
               <p dangerouslySetInnerHTML={{ __html: formatMessage(isUser ? message.content as string : displayedText) }} />

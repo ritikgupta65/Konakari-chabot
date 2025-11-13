@@ -25,7 +25,7 @@ const defaultTheme: ThemeConfig = {
   secondaryGradient: 'from-gray-600 to-gray-800',
   accentColor: 'gray-800',
   logoUrl: 'https://cgahzcwiqcblmkwblqaj.supabase.co/storage/v1/object/public/autosite%20data/Symmetrical%20Red%20Emblem%20on%20White%20Background.png',
-  brandName: 'Eterna Clove',
+  brandName: 'Korakari',
   welcomeMessage: 'Welcome to The Eterna clove. How can we assist you today?',
   quickActions: ['Shop new arrivals', 'Track my order', 'Size guide', 'Contact support'],
   badgeImages: ['https://cgahzcwiqcblmkwblqaj.supabase.co/storage/v1/object/public/cellular-text-pdf/vivek%20ji.jpeg' , 'https://imgs.search.brave.com/8MbpI1_BTB60LD2aadoeZT4SMTmJgpspho-xK6S5am4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cml0em1hZ2F6aW5l/LmluL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDE5LzA1L0FLU0hJ/S0EtUE9EREFSLmpw/Zw']
