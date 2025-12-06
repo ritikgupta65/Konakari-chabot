@@ -410,7 +410,7 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col rounded-2xl overflow-hidden">
       <div className="flex-1 overflow-hidden">
         {chatState === 'welcome' ? (
           <div className="h-full flex flex-col">

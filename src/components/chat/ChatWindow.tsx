@@ -484,7 +484,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   return (
     <div className="h-full flex flex-col bg-gradient-to-r from-[#20335412] to-[#20335412]">
       {/* Compact Header - styling from first version */}
-      <div className="bg-gradient-to-r from-[#20335412] to-[#20335412] backdrop-blur-sm border-b border-gray-600/30 p-3 flex-shrink-0">
+      <div className="bg-white border-b border-[#d1d5db] p-3 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <button

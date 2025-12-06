@@ -126,7 +126,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onGoHome }) => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-r from-[#20335412] to-[#20335412] rounded-2xl overflow-hidden">
+    <div className="h-full flex flex-col bg-gradient-to-r from-[#20335412] to-[#20335412]">
       {/* Header */}
       <div className="flex items-center justify-between p-4 bg-gradient-to-r from-[#20335412] to-[#20335412] backdrop-blur-sm border-b border-gray-600/30">
         <button
