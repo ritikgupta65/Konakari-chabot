@@ -374,7 +374,13 @@ textarea::placeholder {
   .scrollbar-hide {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    }
   }
-}
-
-
+  .border-\[\#5a2d7d\] {
+    --tw-border-opacity: 1;
+    border-color: rgb(32 50 83 / var(--tw-border-opacity, 1));
+  }
+  .bg-\[\#3d1a5f\] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(32 50 83 / var(--tw-bg-opacity, 1));
+  }
